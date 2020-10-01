@@ -6,16 +6,27 @@ public class Driver
 {
 	public static void main(String[] args) throws FileNotFoundException
 	{
-		BibleBook bb1 = new BibleBook("Matthew", 26, "This is an account of Jesus’ life, death, and resurrection, focusing on Jesus’ role as the true king of the Jews.");
-		BibleBook bb2 = new BibleBook("Acts", 28, "Jesus returns to the Father, the Holy Spirit comes to the church, and the gospel of Jesus spreads throughout the world.");
-		BibleBook bb3 = new BibleBook("Romans", 15, "Paul summarizes how the gospel of Jesus works in a letter to the churches at Rome, where he plans to visit.");
 		
-		Animal[] ar = new Animal[4];
 		Scanner input = new Scanner(new File(System.getProperty("user.dir") + "/src/input.dat"));
+		
+		int numLines = 0;
+		//counts the number of lines in the file so I can create the right size array
+		while(input.hasNext()) 
+		{
+			numLines++;
+			input.nextLine();
+		}
+		BibleBook[] books = new BibleBook[numLines];
+		input.close();
+		
+		//re-open the file to put it back at the beginning
+		input = new Scanner(new File(System.getProperty("user.dir") + "/src/input.dat"));
+		int pos = 0;
 		while(input.hasNext())
 		{
-			Animal a = new Animal(input.nextLine());
-			a.display();
+			books[pos] = new BibleBook(input.nextLine());
+			books[pos].display();
+			pos++;
 		}
 		input.close();
 		

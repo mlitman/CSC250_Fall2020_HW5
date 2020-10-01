@@ -12,6 +12,14 @@ public class BibleBook extends Object
 		this.summary = summary;
 	}
 	
+	public BibleBook(String s)
+	{
+		String[] parts = s.split(":");
+		this.name = parts[0];
+		this.number_of_chapters = Integer.parseInt(parts[1]);
+		this.summary = parts[2];
+	}
+	
 	int addNums(int a, int b)
 	{
 		return a + b;
